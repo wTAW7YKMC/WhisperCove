@@ -10,7 +10,9 @@ data class WhisperPost(
     val timestamp: String,
     val likes: Int = 0,
     val comments: Int = 0,
-    val shares: Int = 0
+    val shares: Int = 0,
+    val isOpened: Boolean = false, // 是否已拆盲盒
+    val mood: String = "" // 情绪标签
 )
 
 data class ExploreItem(

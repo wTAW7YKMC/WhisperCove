@@ -12,7 +12,9 @@ object MockData {
             timestamp = "2小时前",
             likes = 42,
             comments = 8,
-            shares = 3
+            shares = 3,
+            isOpened = true, // 已拆盲盒
+            mood = "喜悦" // 情绪标签
         ),
         WhisperPost(
             id = "2",
@@ -24,7 +26,9 @@ object MockData {
             timestamp = "5小时前",
             likes = 128,
             comments = 24,
-            shares = 15
+            shares = 15,
+            isOpened = true,
+            mood = "兴奋"
         ),
         WhisperPost(
             id = "3",
@@ -36,7 +40,35 @@ object MockData {
             timestamp = "1天前",
             likes = 256,
             comments = 32,
-            shares = 18
+            shares = 18,
+            isOpened = true,
+            mood = "平静"
+        ),
+        WhisperPost(
+            id = "4",
+            userId = "user4",
+            userName = "匿名海螺",
+            userAvatar = "https://picsum.photos/seed/user4/200/200.jpg",
+            content = "", // 未拆盲盒不显示内容
+            timestamp = "刚刚",
+            likes = 0,
+            comments = 0,
+            shares = 0,
+            isOpened = false, // 未拆盲盒
+            mood = "" // 未拆盲盒不显示情绪标签
+        ),
+        WhisperPost(
+            id = "5",
+            userId = "user5",
+            userName = "漂流瓶",
+            userAvatar = "https://picsum.photos/seed/user5/200/200.jpg",
+            content = "",
+            timestamp = "10分钟前",
+            likes = 0,
+            comments = 0,
+            shares = 0,
+            isOpened = false,
+            mood = ""
         )
     )
     
@@ -142,9 +174,90 @@ object MockData {
         followersCount = 126
     )
     
-    val userPosts = listOf<Any>(
-        "Post 1",
-        "Post 2",
-        "Post 3"
+    val userPosts = listOf(
+        WhisperPost(
+            id = "user_post_1",
+            userId = "current_user",
+            userName = "WhisperCove用户",
+            userAvatar = "https://picsum.photos/seed/profile/200/200.jpg",
+            content = "今天的夕阳特别美，海边的风轻轻吹过，带来了远方的思念。",
+            imageUrl = "https://picsum.photos/seed/userpost1/400/300.jpg",
+            timestamp = "3小时前",
+            likes = 24,
+            comments = 5,
+            shares = 2,
+            isOpened = true,
+            mood = "平静"
+        ),
+        WhisperPost(
+            id = "user_post_2",
+            userId = "current_user",
+            userName = "WhisperCove用户",
+            userAvatar = "https://picsum.photos/seed/profile/200/200.jpg",
+            content = "分享一首最近很喜欢的歌，旋律总能让我想起那些美好的回忆。",
+            imageUrl = "https://picsum.photos/seed/userpost2/400/300.jpg",
+            timestamp = "1天前",
+            likes = 18,
+            comments = 3,
+            shares = 1,
+            isOpened = true,
+            mood = "喜悦"
+        ),
+        WhisperPost(
+            id = "user_post_3",
+            userId = "current_user",
+            userName = "WhisperCove用户",
+            userAvatar = "https://picsum.photos/seed/profile/200/200.jpg",
+            content = "咖啡店的角落，阳光透过窗户洒在书页上，这样的午后让人感到宁静。",
+            imageUrl = "https://picsum.photos/seed/userpost3/400/300.jpg",
+            timestamp = "2天前",
+            likes = 32,
+            comments = 7,
+            shares = 4,
+            isOpened = true,
+            mood = "思考"
+        ),
+        WhisperPost(
+            id = "user_post_4",
+            userId = "current_user",
+            userName = "WhisperCove用户",
+            userAvatar = "https://picsum.photos/seed/profile/200/200.jpg",
+            content = "期待周末的旅行，新的地方总是能带来新的灵感。",
+            imageUrl = "https://picsum.photos/seed/userpost4/400/300.jpg",
+            timestamp = "3天前",
+            likes = 15,
+            comments = 2,
+            shares = 0,
+            isOpened = true,
+            mood = "期待"
+        ),
+        WhisperPost(
+            id = "user_post_5",
+            userId = "current_user",
+            userName = "WhisperCove用户",
+            userAvatar = "https://picsum.photos/seed/profile/200/200.jpg",
+            content = "今天尝试了新的菜谱，虽然过程有些手忙脚乱，但结果还是很满意的。",
+            imageUrl = "https://picsum.photos/seed/userpost5/400/300.jpg",
+            timestamp = "4天前",
+            likes = 28,
+            comments = 6,
+            shares = 3,
+            isOpened = true,
+            mood = "喜悦"
+        ),
+        WhisperPost(
+            id = "user_post_6",
+            userId = "current_user",
+            userName = "WhisperCove用户",
+            userAvatar = "https://picsum.photos/seed/profile/200/200.jpg",
+            content = "深夜的思绪总是特别清晰，或许这就是我喜欢夜晚的原因。",
+            imageUrl = "https://picsum.photos/seed/userpost6/400/300.jpg",
+            timestamp = "5天前",
+            likes = 21,
+            comments = 4,
+            shares = 2,
+            isOpened = true,
+            mood = "思考"
+        )
     )
 }
