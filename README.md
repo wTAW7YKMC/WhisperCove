@@ -1,127 +1,76 @@
-# WhisperCove Android应用
+# WhisperCove
 
-WhisperCove是一个社交分享应用，让用户能够发现内心的声音，分享生活的美好。
+WhisperCove - Android应用，基于Jetpack Compose的社交分享应用
+
+## 项目简介
+
+WhisperCove是一款基于Android平台的社交分享应用，采用现代化的Jetpack Compose框架开发，提供简洁优雅的用户界面和流畅的交互体验。
 
 ## 功能特点
 
-- **首页**: 浏览和互动用户分享的内容
-- **探索**: 发现不同类别的精彩内容
-- **创作**: 发布自己的作品和想法
-- **连接**: 关注其他用户，建立社交网络
-- **个人资料**: 管理个人信息和查看自己的作品
+- **底部导航**：采用Material3设计风格的底部导航栏，包含5个主要功能模块
+- **主页**：展示用户动态和内容流，支持卡片式布局
+- **发现**：探索和发现有趣的内容，分类浏览
+- **创建**：创建和发布新内容，支持多媒体
+- **连接**：社交功能，关注其他用户，建立社交网络
+- **个人资料**：用户个人中心，展示个人信息和发布历史
 
 ## 技术栈
 
-- **开发语言**: Kotlin
-- **UI框架**: Jetpack Compose
-- **架构**: MVVM
-- **导航**: Navigation Compose
-- **图片加载**: Coil
-- **最低支持版本**: Android 7.0 (API 24)
-- **目标版本**: Android 13 (API 33)
+- **开发语言**：Kotlin
+- **UI框架**：Jetpack Compose
+- **设计系统**：Material3
+- **架构模式**：MVVM-like架构
+- **最低支持版本**：Android 7.0 (API 24)
+- **目标版本**：Android 13 (API 33)
 
 ## 项目结构
 
 ```
-WhisperCove/
-├── app/
-│   ├── src/
-│   │   └── main/
-│   │       ├── java/com/whispercove/app/
-│   │       │   ├── MainActivity.kt
-│   │       │   ├── ui/
-│   │       │   │   ├── components/
-│   │       │   │   │   └── WhisperComponents.kt
-│   │       │   │   ├── models/
-│   │       │   │   │   ├── DataModels.kt
-│   │       │   │   │   └── MockData.kt
-│   │       │   │   ├── navigation/
-│   │       │   │   │   └── Navigation.kt
-│   │       │   │   ├── screens/
-│   │       │   │   │   ├── HomeScreen.kt
-│   │       │   │   │   ├── ExploreScreen.kt
-│   │       │   │   │   ├── CreateScreen.kt
-│   │       │   │   │   ├── ConnectScreen.kt
-│   │       │   │   │   └── ProfileScreen.kt
-│   │       │   │   └── theme/
-│   │       │   │       ├── Theme.kt
-│   │       │   │       └── Type.kt
-│   │       ├── res/
-│   │       │   ├── drawable/
-│   │       │   ├── layout/
-│   │       │   ├── values/
-│   │       │   └── ...
-│   │       └── AndroidManifest.xml
-│   ├── build.gradle
-│   └── proguard-rules.pro
-├── gradle/
-├── build.gradle
-├── settings.gradle
-├── gradle.properties
-└── README.md
+app/
+├── src/main/
+│   ├── java/com/whispercove/app/
+│   │   ├── MainActivity.kt          # 主活动
+│   │   ├── ui/
+│   │   │   ├── components/         # 可复用UI组件
+│   │   │   ├── models/            # 数据模型
+│   │   │   ├── navigation/        # 导航配置
+│   │   │   ├── screens/           # 各页面UI
+│   │   │   └── theme/             # 主题和样式
+│   │   └── ...
+│   ├── res/                       # 资源文件
+│   └── AndroidManifest.xml        # 应用配置
+└── build.gradle                   # 构建配置
 ```
 
-## 构建和安装
+## 构建说明
 
-### 前提条件
-
-- Android Studio Arctic Fox 或更高版本
-- JDK 8 或更高版本
-- Android SDK (API 24-33)
-
-### 构建步骤
-
-1. 克隆或下载项目到本地
+1. 克隆项目到本地
 2. 使用Android Studio打开项目
-3. 等待Gradle同步完成
-4. 连接Android设备或启动模拟器
-5. 点击运行按钮或使用以下命令构建APK
+3. 确保已安装Android SDK (API 33)
+4. 同步Gradle配置
+5. 构建并运行应用
 
-#### 使用命令行构建
+## APK文件
 
-在Windows系统上，可以运行提供的构建脚本：
+调试版本APK位于：`app/build/outputs/apk/debug/app-debug.apk`
 
-```bash
-build-apk.bat
-```
+## 已知问题
 
-或者手动执行：
+- 应用在缺少INTERNET权限时会崩溃（已在AndroidManifest.xml中添加相应权限）
 
-```bash
-# 构建调试版本
-gradlew assembleDebug
+## 开发计划
 
-# 构建发布版本（需要签名配置）
-gradlew assembleRelease
-```
-
-### 安装APK
-
-调试版本APK位置：`app/build/outputs/apk/debug/app-debug.apk`
-
-发布版本APK位置：`app/build/outputs/apk/release/app-release.apk`
-
-## 应用截图
-
-TODO: 添加应用截图
-
-## 设计理念
-
-WhisperCove的设计灵感来源于现代简约风格，采用深色主题为主，搭配明亮的强调色，营造出温馨而神秘的氛围。界面设计参考了简历网站的简洁风格，但增加了更多的交互元素和动画效果，使用户体验更加流畅自然。
-
-## 贡献
-
-欢迎提交问题和改进建议！
+- [ ] 添加用户认证功能
+- [ ] 实现后端API集成
+- [ ] 添加推送通知
+- [ ] 优化性能和内存使用
+- [ ] 添加更多社交功能
 
 ## 许可证
 
-MIT License
+本项目采用MIT许可证。
 
-## 更新日志
+## 联系方式
 
-### v1.0.0 (2023-12-21)
-
-- 初始版本发布
-- 实现基本功能：首页、探索、创作、连接和个人资料
-- 支持内容发布和互动
-- 实现用户关注系统
+如有问题或建议，请通过GitHub Issues联系。
