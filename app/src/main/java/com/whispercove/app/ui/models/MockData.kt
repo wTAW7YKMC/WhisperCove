@@ -14,7 +14,7 @@ object MockData {
             comments = 8,
             shares = 3,
             isOpened = true, // 已拆盲盒
-            mood = "喜悦" // 情绪标签
+            mood = "考研emo" // 情绪标签
         ),
         WhisperPost(
             id = "2",
@@ -42,7 +42,7 @@ object MockData {
             comments = 32,
             shares = 18,
             isOpened = true,
-            mood = "平静"
+            mood = "干饭快乐"
         ),
         WhisperPost(
             id = "4",
@@ -64,6 +64,45 @@ object MockData {
             userAvatar = "https://picsum.photos/seed/user5/200/200.jpg",
             content = "",
             timestamp = "10分钟前",
+            likes = 0,
+            comments = 0,
+            shares = 0,
+            isOpened = false,
+            mood = ""
+        ),
+        WhisperPost(
+            id = "6",
+            userId = "user6",
+            userName = "匿名海螺",
+            userAvatar = "https://picsum.photos/seed/user6/200/200.jpg",
+            content = "",
+            timestamp = "30分钟前",
+            likes = 0,
+            comments = 0,
+            shares = 0,
+            isOpened = false,
+            mood = ""
+        ),
+        WhisperPost(
+            id = "7",
+            userId = "user7",
+            userName = "漂流瓶",
+            userAvatar = "https://picsum.photos/seed/user7/200/200.jpg",
+            content = "",
+            timestamp = "1小时前",
+            likes = 0,
+            comments = 0,
+            shares = 0,
+            isOpened = false,
+            mood = ""
+        ),
+        WhisperPost(
+            id = "8",
+            userId = "user8",
+            userName = "匿名海螺",
+            userAvatar = "https://picsum.photos/seed/user8/200/200.jpg",
+            content = "",
+            timestamp = "2小时前",
             likes = 0,
             comments = 0,
             shares = 0,

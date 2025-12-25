@@ -54,6 +54,10 @@ fun WhisperCoveNavigation() {
             composable(Screen.Create.route) { CreateScreen(navController) }
             composable(Screen.Connect.route) { ConnectScreen(navController) }
             composable(Screen.Profile.route) { ProfileScreen(navController) }
+            composable("post/{postId}") { backStackEntry ->
+                val postId = backStackEntry.arguments?.getString("postId") ?: ""
+                PostDetailScreen(navController, postId)
+            }
         }
     }
 }

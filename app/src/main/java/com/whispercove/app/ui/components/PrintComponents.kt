@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.whispercove.app.ui.theme.SealRed
 
 object PrintComponents {
     
@@ -28,7 +27,7 @@ object PrintComponents {
         enabled: Boolean = true
     ) {
         val buttonColor = if (enabled) MaterialTheme.colorScheme.primary else Color.Gray
-        val borderColor = if (enabled) SealRed else Color.Gray
+        val borderColor = if (enabled) Color(0xFFC83E37) else Color.Gray // stamp_red
         val borderWidth = if (enabled) 2.dp else 1.dp
         
         Box(
@@ -106,7 +105,7 @@ object PrintComponents {
         modifier: Modifier = Modifier,
         selected: Boolean = false
     ) {
-        val backgroundColor = if (selected) SealRed else MaterialTheme.colorScheme.tertiary
+        val backgroundColor = if (selected) Color(0xFFC83E37) else MaterialTheme.colorScheme.tertiary // stamp_red
         val textColor = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.primary
         
         Button(
@@ -135,7 +134,7 @@ object PrintComponents {
     fun SealDecoration(
         modifier: Modifier = Modifier,
         size: Float = 24f,
-        color: Color = SealRed
+        color: Color = Color(0xFFC83E37) // stamp_red
     ) {
         Box(
             modifier = modifier

@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- WhisperCove 核心色调：木屋+树洞+邮票，和谐复古 -->
+    <!-- 核心色调占比：背景主色70%，木屋主棕15%，树洞绿10%，邮票红5% -->
+    <color name="bg_paper">#F9F6F3</color> <!-- 纸白背景，呼应简历，占比70% -->
+    <color name="wood_brown">#8B6E4E</color> <!-- 木屋主棕，温暖自然，占比15% -->
+    <color name="wood_brown_light">#A68A69</color> <!-- 浅木色，边框/次要元素 -->
+    <color name="tree_green">#6B8E5D</color> <!-- 树洞绿，辅助色，占比10% -->
+    <color name="stamp_red">#C83E37</color> <!-- 邮票红，点睛色，占比5% -->
+    <color name="text_black">#222222</color> <!-- 文字主色，复用简历 -->
+    <color name="text_gray">#666666</color> <!-- 文字辅助色 -->
+    <color name="divider_gray">#E0E0E0</color> <!-- 分割线 -->
     
-    <!-- WhisperCove Theme Colors -->
-    <color name="primary">#FF5E60CE</color>
-    <color name="primary_variant">#FF4A4D8F</color>
-    <color name="secondary">#FF64DFDF</color>
-    <color name="secondary_variant">#FF48BFE3</color>
-    <color name="background">#FF0B0C10</color>
-    <color name="surface">#FF1F2833</color>
-    <color name="error">#FFEF476F</color>
-    <color name="on_primary">#FFFFFFFF</color>
-    <color name="on_secondary">#FF000000</color>
-    <color name="on_background">#FFFFFFFF</color>
-    <color name="on_surface">#FFFFFFFF</color>
-    <color name="on_error">#FF000000</color>
+    <!-- 交互反馈色 -->
+    <color name="wood_brown_dark">#7A5F42</color> <!-- 木屋棕加深10%，用于点击反馈 -->
+    <color name="stamp_red_light">#D94A42</color> <!-- 邮票红变亮，用于打包盲盒动效 -->
 </resources>
