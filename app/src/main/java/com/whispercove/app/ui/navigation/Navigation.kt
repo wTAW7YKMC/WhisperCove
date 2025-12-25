@@ -16,7 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import com.whispercove.app.ui.screens.*
 
 @Composable
-fun WhisperCoveNavigation() {
+fun TreeHoleNavigation() {
     val navController = rememberNavController()
     
     Scaffold(
@@ -54,9 +54,9 @@ fun WhisperCoveNavigation() {
             composable(Screen.Create.route) { CreateScreen(navController) }
             composable(Screen.Connect.route) { ConnectScreen(navController) }
             composable(Screen.Profile.route) { ProfileScreen(navController) }
-            composable("post/{postId}") { backStackEntry ->
-                val postId = backStackEntry.arguments?.getString("postId") ?: ""
-                PostDetailScreen(navController, postId)
+            composable("letter/{letterId}") { backStackEntry ->
+                val letterId = backStackEntry.arguments?.getString("letterId") ?: ""
+                LetterDetailScreen(navController, letterId)
             }
         }
     }
@@ -67,11 +67,11 @@ sealed class Screen(
     val label: String,
     val icon: ImageVector
 ) {
-    object Home : Screen("home", "首页", Icons.Default.Home)
+    object Home : Screen("home", "信箱", Icons.Default.Inbox)
     object Explore : Screen("explore", "探索", Icons.Default.Search)
-    object Create : Screen("create", "创作", Icons.Default.Add)
-    object Connect : Screen("connect", "连接", Icons.Default.People)
-    object Profile : Screen("profile", "我的", Icons.Default.Person)
+    object Create : Screen("create", "写信", Icons.Default.Edit)
+    object Connect : Screen("connect", "漂流瓶", Icons.Default.Waves)
+    object Profile : Screen("profile", "收藏", Icons.Default.Bookmark)
 }
 
 val items = listOf(

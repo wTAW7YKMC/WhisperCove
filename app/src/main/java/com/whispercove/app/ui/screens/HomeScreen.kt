@@ -24,12 +24,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.whispercove.app.ui.models.MockData
-import com.whispercove.app.ui.components.WhisperCoveComponents
+import com.whispercove.app.ui.components.TreeHoleComponents
 import kotlinx.coroutines.launch
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    val posts = remember { MockData.posts }
+    val letters = remember { MockData.letters }
     val moodTags = listOf("全部", "考研emo", "干饭快乐", "平静", "兴奋", "思考", "期待")
     var selectedMood by remember { mutableStateOf("全部") }
     var unboxingCardId by remember { mutableStateOf<String?>(null) } // 正在拆盲盒的卡片ID
@@ -37,11 +37,11 @@ fun HomeScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF9F6F3)) // bg_paper
+            .background(MaterialTheme.colorScheme.background) // 使用主题背景色
             // 添加极淡的树洞轮廓暗纹
             .drawBehind {
                 // 绘制极淡的树洞轮廓暗纹
-                val lineColor = Color(0xFF6B8E5D).copy(alpha = 0.05f) // tree_green with 5% opacity
+                val lineColor = Color(0xFF6B8E5D).copy(alpha = 0.05f) // 使用固定颜色代替MaterialTheme
                 
                 // 绘制树洞轮廓
                 val centerX = size.width * 0.8f
@@ -84,11 +84,11 @@ fun HomeScreen(navController: NavController) {
                     text = buildAnnotatedString {
                         withStyle(
                             style = SpanStyle(
-                                color = Color(0xFF222222), // text_black
+                                color = MaterialTheme.colorScheme.onBackground, // 使用主题文本颜色
                                 fontFamily = FontFamily.Monospace // Special Elite字体
                             )
                         ) {
-                            append("WhisperCove")
+                            append("树洞信件漂流站")
                         }
                     },
                     style = TextStyle(
@@ -104,7 +104,7 @@ fun HomeScreen(navController: NavController) {
                         drawLine(
                             start = Offset(0f, y),
                             end = Offset(size.width, y),
-                            color = Color(0xFF8B6E4E), // wood_brown
+                            color = Color(0xFF8D6E63), // 使用固定颜色代替MaterialTheme
                             strokeWidth = strokeWidth
                         )
                     }
@@ -116,7 +116,7 @@ fun HomeScreen(navController: NavController) {
                     modifier = Modifier
                         .size(24.dp)
                         .background(
-                            color = Color(0xFF6B8E5D), // tree_green
+                            color = MaterialTheme.colorScheme.primary, // 使用主题色
                             shape = androidx.compose.foundation.shape.CircleShape
                         )
                 )
@@ -130,7 +130,7 @@ fun HomeScreen(navController: NavController) {
                 horizontalArrangement = Arrangement.spacedBy(8.dp) // tag_spacing
             ) {
                 items(moodTags) { mood ->
-                    WhisperCoveComponents.TagButton(
+                    TreeHoleComponents.TagButton(
                         text = mood,
                         onClick = { selectedMood = mood },
                         selected = selectedMood == mood
@@ -140,11 +140,11 @@ fun HomeScreen(navController: NavController) {
             
             Spacer(modifier = Modifier.height(24.dp)) // section_spacing
             
-            // 盲盒池（2列网格，未拆信封卡片，右上角火漆印）
-            val filteredPosts = if (selectedMood == "全部") {
-                posts
+            // 信件池（2列网格，未拆信封卡片，右上角火漆印）
+            val filteredLetters = if (selectedMood == "全部") {
+                letters
             } else {
-                posts.filter { it.mood == selectedMood }
+                letters.filter { it.mood == selectedMood }
             }
             
             LazyVerticalGrid(
@@ -153,21 +153,21 @@ fun HomeScreen(navController: NavController) {
                 horizontalArrangement = Arrangement.spacedBy(16.dp), // grid_spacing
                 verticalArrangement = Arrangement.spacedBy(16.dp) // grid_spacing
             ) {
-                items(filteredPosts.take(6)) { post -> // 限制显示6个盲盒
-                    WhisperCoveComponents.UnopenedBlindBoxCard(
-                        mood = post.mood,
-                        createTime = post.timestamp,
+                items(filteredLetters.take(6)) { letter -> // 限制显示6封信件
+                    TreeHoleComponents.UnopenedLetterCard(
+                        mood = letter.mood,
+                        createTime = letter.timestamp,
                         onClick = { 
-                            // 触发拆盲盒动效
-                            unboxingCardId = post.id
+                            // 触发拆信件动效
+                            unboxingCardId = letter.id
                             
                             // 动画结束后导航到详情页
                             kotlinx.coroutines.GlobalScope.launch {
                                 kotlinx.coroutines.delay(300) // 等待动画完成
-                                navController.navigate("post/${post.id}")
+                                navController.navigate("letter/${letter.id}")
                             }
                         },
-                        isUnboxing = unboxingCardId == post.id
+                        isUnboxing = unboxingCardId == letter.id
                     )
                 }
             }
@@ -213,9 +213,9 @@ fun HomeScreen(navController: NavController) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-                WhisperCoveComponents.StampButton(
-                    text = "抽取盲盒",
-                    onClick = { /* TODO: 实现抽取盲盒功能 */ }
+                TreeHoleComponents.StampButton(
+                    text = "抽取信件",
+                    onClick = { /* TODO: 实现抽取信件功能 */ }
                 )
             }
         }

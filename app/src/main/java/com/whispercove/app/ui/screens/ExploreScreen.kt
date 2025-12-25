@@ -28,15 +28,17 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.whispercove.app.ui.components.PrintComponents
-import com.whispercove.app.ui.models.ExploreItem
+import com.whispercove.app.ui.models.TreeHole
+import com.whispercove.app.ui.models.DriftingBottle
 import com.whispercove.app.ui.models.MockData
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExploreScreen(navController: NavController) {
-    val exploreItems = remember { MockData.exploreItems }
+    val treeHoles = remember { MockData.treeHoles }
+    val driftingBottles = remember { MockData.driftingBottles }
     var selectedCategory by remember { mutableStateOf("全部") }
-    val categories = listOf("全部", "音乐", "艺术", "摄影", "文学", "生活")
+    val categories = listOf("全部", "树洞", "漂流瓶")
     
     Box(
         modifier = Modifier
@@ -101,28 +103,29 @@ fun ExploreScreen(navController: NavController) {
             
             Spacer(modifier = Modifier.height(24.dp))
             
-            // 推荐内容区（混合布局，信封卡片+火漆印标记）
-            val filteredItems = exploreItems.filter { 
-                selectedCategory == "全部" || it.category == selectedCategory 
-            }
-            
+            // 探索内容区（树洞和漂流瓶）
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 contentPadding = PaddingValues(bottom = 80.dp) // 为底部导航预留空间
             ) {
-                itemsIndexed(filteredItems) { index, item ->
-                    // 混合布局：偶数索引使用大卡片，奇数索引使用小卡片
-                    if (index % 2 == 0) {
-                        LargeExploreCard(
-                            item = item,
-                            onItemClick = { /* TODO: Navigate to item details */ }
+                // 显示树洞
+                if (selectedCategory == "全部" || selectedCategory == "树洞") {
+                    items(treeHoles) { treeHole ->
+                        TreeHoleCard(
+                            treeHole = treeHole,
+                            onItemClick = { /* TODO: Navigate to tree hole details */ }
                         )
-                    } else {
-                        SmallExploreCard(
-                            item = item,
-                            onItemClick = { /* TODO: Navigate to item details */ }
+                    }
+                }
+                
+                // 显示漂流瓶
+                if (selectedCategory == "全部" || selectedCategory == "漂流瓶") {
+                    items(driftingBottles) { bottle ->
+                        DriftingBottleCard(
+                            bottle = bottle,
+                            onItemClick = { /* TODO: Navigate to bottle details */ }
                         )
                     }
                 }
@@ -133,8 +136,8 @@ fun ExploreScreen(navController: NavController) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LargeExploreCard(
-    item: ExploreItem,
+fun TreeHoleCard(
+    treeHole: TreeHole,
     onItemClick: () -> Unit
 ) {
     Card(
@@ -151,8 +154,8 @@ fun LargeExploreCard(
         Box {
             // 背景图片
             AsyncImage(
-                model = item.imageUrl,
-                contentDescription = item.title,
+                model = treeHole.imageUrl,
+                contentDescription = treeHole.name,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
@@ -173,36 +176,46 @@ fun LargeExploreCard(
                     .padding(16.dp),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-                // 顶部：分类标签
-                PrintComponents.TagButton(
-                    text = item.category,
-                    onClick = { },
-                    selected = false,
-                    modifier = Modifier.widthIn(max = 80.dp)
+                // 顶部：树洞图标
+                Text(
+                    text = "🌳",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontSize = 24.sp
                 )
                 
-                // 底部：标题和作者
+                // 底部：名称和位置
                 Column {
                     Text(
-                        text = item.title,
+                        text = treeHole.name,
                         style = MaterialTheme.typography.titleMedium.copy(
                             fontFamily = FontFamily.Monospace, // Special Elite风格
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Normal
                         ),
                         color = MaterialTheme.colorScheme.primary,
-                        maxLines = 2
+                        maxLines = 1
                     )
                     
                     Spacer(modifier = Modifier.height(4.dp))
                     
                     Text(
-                        text = "by ${item.author}",
+                        text = treeHole.location,
                         style = MaterialTheme.typography.bodyMedium.copy(
                             fontFamily = FontFamily.Cursive, // Patrick Hand风格
                             fontSize = 14.sp
                         ),
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                        maxLines = 1
+                    )
+                    
+                    Spacer(modifier = Modifier.height(4.dp))
+                    
+                    Text(
+                        text = "${treeHole.letterCount}封信",
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            fontSize = 12.sp
+                        ),
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                         maxLines = 1
                     )
                 }
@@ -220,8 +233,8 @@ fun LargeExploreCard(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SmallExploreCard(
-    item: ExploreItem,
+fun DriftingBottleCard(
+    bottle: DriftingBottle,
     onItemClick: () -> Unit
 ) {
     Card(
@@ -236,20 +249,17 @@ fun SmallExploreCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp) // 无硬阴影，保持扁平感
     ) {
         Box {
-            // 背景图片
-            AsyncImage(
-                model = item.imageUrl,
-                contentDescription = item.title,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
-            )
-            
-            // 半透明遮罩
+            // 背景渐变（海洋效果）
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(
-                        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.7f)
+                        brush = androidx.compose.ui.graphics.Brush.verticalGradient(
+                            colors = listOf(
+                                MaterialTheme.colorScheme.primary.copy(alpha = 0.3f),
+                                MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
+                            )
+                        )
                     )
             )
             
@@ -258,29 +268,49 @@ fun SmallExploreCard(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(12.dp),
-                verticalArrangement = Arrangement.Bottom
+                verticalArrangement = Arrangement.Center
             ) {
+                // 漂流瓶图标
                 Text(
-                    text = item.title,
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontFamily = FontFamily.Monospace, // Special Elite风格
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Normal
+                    text = "🍾",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontSize = 32.sp,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+                
+                Spacer(modifier = Modifier.height(8.dp))
+                
+                Text(
+                    text = if (bottle.isPickedUp) "已被捡起" else "漂流中",
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontFamily = FontFamily.Cursive, // Patrick Hand风格
+                        fontSize = 14.sp
                     ),
-                    color = MaterialTheme.colorScheme.primary,
-                    maxLines = 2
+                    color = if (bottle.isPickedUp) 
+                        MaterialTheme.colorScheme.error 
+                    else 
+                        MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
                 
                 Spacer(modifier = Modifier.height(4.dp))
                 
                 Text(
-                    text = item.author,
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        fontFamily = FontFamily.Cursive, // Patrick Hand风格
+                    text = "来自${bottle.origin}",
+                    style = MaterialTheme.typography.bodySmall.copy(
                         fontSize = 12.sp
                     ),
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                    maxLines = 1
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+                
+                Text(
+                    text = "漂流${bottle.journeyDays}天",
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        fontSize = 12.sp
+                    ),
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
             }
             

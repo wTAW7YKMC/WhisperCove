@@ -35,7 +35,8 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            // 暂时注释掉签名配置，直到keystore文件创建完成
+            // signingConfig signingConfigs.release
         }
     }
     compileOptions {

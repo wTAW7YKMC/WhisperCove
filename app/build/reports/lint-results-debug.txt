@@ -1,0 +1,276 @@
+E:\WhisperCove\app\build.gradle:13: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+        targetSdk 33
+        ~~~~~~~~~~~~
+
+   Explanation for issues of type "OldTargetApi":
+   When your application runs on a version of Android that is more recent than
+   your targetSdkVersion specifies that it has been tested with, various
+   compatibility modes kick in. This ensures that your application continues
+   to work, but it may look out of place. For example, if the targetSdkVersion
+   is less than 14, your app may get an option button in the UI.
+
+   To fix this issue, set the targetSdkVersion to the highest available value.
+   Then test your app to make sure everything works correctly. You may want to
+   consult the compatibility notes to see what changes apply to each version
+   you are adding support for:
+   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
+   as well as follow this guide:
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+E:\WhisperCove\app\src\main\AndroidManifest.xml:21: Warning: Redundant label can be removed [RedundantLabel]
+            android:label="@string/app_name"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "RedundantLabel":
+   When an activity does not have a label attribute, it will use the one from
+   the application tag. Since the application has already specified the same
+   label, the label on this activity can be omitted.
+
+E:\WhisperCove\app\src\main\java\com\whispercove\app\ui\components\CollectionBoxComponents.kt:37: Warning: Modifier parameter should be the first optional parameter [ModifierParameter from androidx.compose.ui]
+    modifier: Modifier = Modifier
+    ~~~~~~~~
+E:\WhisperCove\app\src\main\java\com\whispercove\app\ui\components\DriftingBottleComponents.kt:53: Warning: Modifier parameter should be the first optional parameter [ModifierParameter from androidx.compose.ui]
+    modifier: Modifier = Modifier
+    ~~~~~~~~
+E:\WhisperCove\app\src\main\java\com\whispercove\app\ui\components\DriftingBottleComponents.kt:171: Warning: Modifier parameter should be the first optional parameter [ModifierParameter from androidx.compose.ui]
+    modifier: Modifier = Modifier
+    ~~~~~~~~
+E:\WhisperCove\app\src\main\java\com\whispercove\app\ui\components\TreeHoleComponents.kt:234: Warning: Modifier parameter should be the first optional parameter [ModifierParameter from androidx.compose.ui]
+    modifier: Modifier = Modifier
+    ~~~~~~~~
+E:\WhisperCove\app\src\main\java\com\whispercove\app\ui\components\WhisperComponents.kt:81: Warning: Modifier parameter should be the first optional parameter [ModifierParameter from androidx.compose.ui]
+    modifier: Modifier = Modifier
+    ~~~~~~~~
+
+   Explanation for issues of type "ModifierParameter":
+   The first (or only) Modifier parameter in a Composable function should
+   follow the following rules:
+   - Be named modifier
+   - Have a type of Modifier
+   - Either have no default value, or have a default value of Modifier
+   - If optional, be the first optional parameter in the parameter list
+
+   Vendor: Jetpack Compose
+   Identifier: androidx.compose.ui
+   Feedback: https://issuetracker.google.com/issues/new?component=612128
+
+E:\WhisperCove\app\src\main\res\values\colors.xml:5: Warning: The resource R.color.bg_paper appears to be unused [UnusedResources]
+    <color name="bg_paper">#F9F6F3</color> <!-- 纸白背景，呼应简历，占比70% -->
+           ~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\colors.xml:6: Warning: The resource R.color.wood_brown appears to be unused [UnusedResources]
+    <color name="wood_brown">#8B6E4E</color> <!-- 木屋主棕，温暖自然，占比15% -->
+           ~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\colors.xml:7: Warning: The resource R.color.wood_brown_light appears to be unused [UnusedResources]
+    <color name="wood_brown_light">#A68A69</color> <!-- 浅木色，边框/次要元素 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\colors.xml:8: Warning: The resource R.color.tree_green appears to be unused [UnusedResources]
+    <color name="tree_green">#6B8E5D</color> <!-- 树洞绿，辅助色，占比10% -->
+           ~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\colors.xml:9: Warning: The resource R.color.stamp_red appears to be unused [UnusedResources]
+    <color name="stamp_red">#C83E37</color> <!-- 邮票红，点睛色，占比5% -->
+           ~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\colors.xml:10: Warning: The resource R.color.text_black appears to be unused [UnusedResources]
+    <color name="text_black">#222222</color> <!-- 文字主色，复用简历 -->
+           ~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\colors.xml:11: Warning: The resource R.color.text_gray appears to be unused [UnusedResources]
+    <color name="text_gray">#666666</color> <!-- 文字辅助色 -->
+           ~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\colors.xml:12: Warning: The resource R.color.divider_gray appears to be unused [UnusedResources]
+    <color name="divider_gray">#E0E0E0</color> <!-- 分割线 -->
+           ~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\colors.xml:15: Warning: The resource R.color.wood_brown_dark appears to be unused [UnusedResources]
+    <color name="wood_brown_dark">#7A5F42</color> <!-- 木屋棕加深10%，用于点击反馈 -->
+           ~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\colors.xml:16: Warning: The resource R.color.stamp_red_light appears to be unused [UnusedResources]
+    <color name="stamp_red_light">#D94A42</color> <!-- 邮票红变亮，用于打包盲盒动效 -->
+           ~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:5: Warning: The resource R.dimen.stamp_button_size appears to be unused [UnusedResources]
+    <dimen name="stamp_button_size">56dp</dimen> <!-- 邮票造型核心按钮正方形边长 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:6: Warning: The resource R.dimen.stamp_button_sawtooth_depth appears to be unused [UnusedResources]
+    <dimen name="stamp_button_sawtooth_depth">3dp</dimen> <!-- 邮票锯齿边缘深度 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:7: Warning: The resource R.dimen.stamp_button_sawtooth_spacing appears to be unused [UnusedResources]
+    <dimen name="stamp_button_sawtooth_spacing">4dp</dimen> <!-- 邮票锯齿间距 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:8: Warning: The resource R.dimen.stamp_button_border_width appears to be unused [UnusedResources]
+    <dimen name="stamp_button_border_width">2dp</dimen> <!-- 邮票按钮边框宽度 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:11: Warning: The resource R.dimen.input_corner_radius appears to be unused [UnusedResources]
+    <dimen name="input_corner_radius">4dp</dimen> <!-- 输入框圆角 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:12: Warning: The resource R.dimen.input_border_width appears to be unused [UnusedResources]
+    <dimen name="input_border_width">2dp</dimen> <!-- 输入框底部边框宽度 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:13: Warning: The resource R.dimen.input_min_height_blindbox appears to be unused [UnusedResources]
+    <dimen name="input_min_height_blindbox">80dp</dimen> <!-- 盲盒输入框最小高度 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:14: Warning: The resource R.dimen.input_min_height_response appears to be unused [UnusedResources]
+    <dimen name="input_min_height_response">60dp</dimen> <!-- 回应输入框最小高度 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:15: Warning: The resource R.dimen.input_max_height appears to be unused [UnusedResources]
+    <dimen name="input_max_height">200dp</dimen> <!-- 输入框最大高度 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:18: Warning: The resource R.dimen.card_corner_radius appears to be unused [UnusedResources]
+    <dimen name="card_corner_radius">8dp</dimen> <!-- 卡片圆角 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:19: Warning: The resource R.dimen.card_border_thick appears to be unused [UnusedResources]
+    <dimen name="card_border_thick">2dp</dimen> <!-- 卡片粗边框 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:20: Warning: The resource R.dimen.card_border_thin appears to be unused [UnusedResources]
+    <dimen name="card_border_thin">1dp</dimen> <!-- 卡片细边框 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:21: Warning: The resource R.dimen.card_padding_horizontal appears to be unused [UnusedResources]
+    <dimen name="card_padding_horizontal">16dp</dimen> <!-- 卡片水平内边距 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:22: Warning: The resource R.dimen.card_padding_vertical appears to be unused [UnusedResources]
+    <dimen name="card_padding_vertical">12dp</dimen> <!-- 卡片垂直内边距 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:23: Warning: The resource R.dimen.unopened_card_height appears to be unused [UnusedResources]
+    <dimen name="unopened_card_height">120dp</dimen> <!-- 未拆盲盒卡片高度 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:24: Warning: The resource R.dimen.opened_card_min_height appears to be unused [UnusedResources]
+    <dimen name="opened_card_min_height">150dp</dimen> <!-- 已拆盲盒卡片最小高度 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:25: Warning: The resource R.dimen.response_card_min_height appears to be unused [UnusedResources]
+    <dimen name="response_card_min_height">100dp</dimen> <!-- 回应卡片最小高度 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:28: Warning: The resource R.dimen.tag_height appears to be unused [UnusedResources]
+    <dimen name="tag_height">32dp</dimen> <!-- 标签高度 -->
+           ~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:29: Warning: The resource R.dimen.tag_min_width appears to be unused [UnusedResources]
+    <dimen name="tag_min_width">60dp</dimen> <!-- 标签最小宽度 -->
+           ~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:30: Warning: The resource R.dimen.tag_spacing appears to be unused [UnusedResources]
+    <dimen name="tag_spacing">8dp</dimen> <!-- 标签间距 -->
+           ~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:31: Warning: The resource R.dimen.tag_sawtooth_depth appears to be unused [UnusedResources]
+    <dimen name="tag_sawtooth_depth">1dp</dimen> <!-- 标签锯齿边缘深度 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:34: Warning: The resource R.dimen.tree_hole_icon_size appears to be unused [UnusedResources]
+    <dimen name="tree_hole_icon_size">16dp</dimen> <!-- 树洞图标尺寸 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:35: Warning: The resource R.dimen.stamp_icon_size appears to be unused [UnusedResources]
+    <dimen name="stamp_icon_size">12dp</dimen> <!-- 邮票图标尺寸 -->
+           ~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:36: Warning: The resource R.dimen.seal_icon_size appears to be unused [UnusedResources]
+    <dimen name="seal_icon_size">24dp</dimen> <!-- 火漆印图标尺寸 -->
+           ~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:37: Warning: The resource R.dimen.stamp_label_size appears to be unused [UnusedResources]
+    <dimen name="stamp_label_size">32dp</dimen> <!-- 邮票标签尺寸 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:38: Warning: The resource R.dimen.leaf_icon_size appears to be unused [UnusedResources]
+    <dimen name="leaf_icon_size">8dp</dimen> <!-- 树叶图标尺寸 -->
+           ~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:39: Warning: The resource R.dimen.cabin_icon_size appears to be unused [UnusedResources]
+    <dimen name="cabin_icon_size">24dp</dimen> <!-- 木屋图标尺寸 -->
+           ~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:42: Warning: The resource R.dimen.page_margin_horizontal appears to be unused [UnusedResources]
+    <dimen name="page_margin_horizontal">20dp</dimen> <!-- 页面水平边距 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:43: Warning: The resource R.dimen.page_margin_vertical appears to be unused [UnusedResources]
+    <dimen name="page_margin_vertical">28dp</dimen> <!-- 页面垂直边距 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:44: Warning: The resource R.dimen.component_spacing appears to be unused [UnusedResources]
+    <dimen name="component_spacing">16dp</dimen> <!-- 组件间距 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:45: Warning: The resource R.dimen.section_spacing appears to be unused [UnusedResources]
+    <dimen name="section_spacing">24dp</dimen> <!-- 区块间距 -->
+           ~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:46: Warning: The resource R.dimen.grid_spacing appears to be unused [UnusedResources]
+    <dimen name="grid_spacing">16dp</dimen> <!-- 网格间距 -->
+           ~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:49: Warning: The resource R.dimen.text_title_size appears to be unused [UnusedResources]
+    <dimen name="text_title_size">22sp</dimen> <!-- 页面标题字号 -->
+           ~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:50: Warning: The resource R.dimen.text_section_title_size appears to be unused [UnusedResources]
+    <dimen name="text_section_title_size">18sp</dimen> <!-- 模块标题字号 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:51: Warning: The resource R.dimen.text_content_size appears to be unused [UnusedResources]
+    <dimen name="text_content_size">16sp</dimen> <!-- 内容字号 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:52: Warning: The resource R.dimen.text_button_size appears to be unused [UnusedResources]
+    <dimen name="text_button_size">14sp</dimen> <!-- 按钮文字字号 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:53: Warning: The resource R.dimen.text_caption_size appears to be unused [UnusedResources]
+    <dimen name="text_caption_size">12sp</dimen> <!-- 辅助文字字号 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:56: Warning: The resource R.dimen.divider_height appears to be unused [UnusedResources]
+    <dimen name="divider_height">1dp</dimen> <!-- 分割线高度 -->
+           ~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\dimens.xml:57: Warning: The resource R.dimen.divider_dot_size appears to be unused [UnusedResources]
+    <dimen name="divider_dot_size">12dp</dimen> <!-- 分割线中间圆点尺寸 -->
+           ~~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\drawable\ic_connect.xml:1: Warning: The resource R.drawable.ic_connect appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+E:\WhisperCove\app\src\main\res\drawable\ic_create.xml:1: Warning: The resource R.drawable.ic_create appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+E:\WhisperCove\app\src\main\res\drawable\ic_explore.xml:1: Warning: The resource R.drawable.ic_explore appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+E:\WhisperCove\app\src\main\res\drawable\ic_home.xml:1: Warning: The resource R.drawable.ic_home appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+E:\WhisperCove\app\src\main\res\drawable\ic_launcher_background.xml:1: Warning: The resource R.drawable.ic_launcher_background appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+E:\WhisperCove\app\src\main\res\drawable\ic_launcher_foreground.xml:1: Warning: The resource R.drawable.ic_launcher_foreground appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+E:\WhisperCove\app\src\main\res\drawable\ic_profile.xml:1: Warning: The resource R.drawable.ic_profile appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+E:\WhisperCove\app\src\main\res\values\strings.xml:4: Warning: The resource R.string.welcome_message appears to be unused [UnusedResources]
+    <string name="welcome_message">欢迎来到 WhisperCove</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\strings.xml:5: Warning: The resource R.string.tagline appears to be unused [UnusedResources]
+    <string name="tagline">发现内心的声音，分享生活的美好</string>
+            ~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\strings.xml:6: Warning: The resource R.string.explore appears to be unused [UnusedResources]
+    <string name="explore">探索</string>
+            ~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\strings.xml:7: Warning: The resource R.string.create appears to be unused [UnusedResources]
+    <string name="create">创作</string>
+            ~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\strings.xml:8: Warning: The resource R.string.connect appears to be unused [UnusedResources]
+    <string name="connect">连接</string>
+            ~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\strings.xml:9: Warning: The resource R.string.profile appears to be unused [UnusedResources]
+    <string name="profile">个人资料</string>
+            ~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\strings.xml:10: Warning: The resource R.string.settings appears to be unused [UnusedResources]
+    <string name="settings">设置</string>
+            ~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\strings.xml:11: Warning: The resource R.string.home appears to be unused [UnusedResources]
+    <string name="home">首页</string>
+            ~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\strings.xml:12: Warning: The resource R.string.search appears to be unused [UnusedResources]
+    <string name="search">搜索</string>
+            ~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\strings.xml:13: Warning: The resource R.string.notifications appears to be unused [UnusedResources]
+    <string name="notifications">通知</string>
+            ~~~~~~~~~~~~~~~~~~~~
+E:\WhisperCove\app\src\main\res\values\strings.xml:14: Warning: The resource R.string.messages appears to be unused [UnusedResources]
+    <string name="messages">消息</string>
+            ~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+0 errors, 74 warnings

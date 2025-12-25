@@ -28,12 +28,12 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.whispercove.app.ui.components.PrintComponents
 import com.whispercove.app.ui.models.MockData
-import com.whispercove.app.ui.models.WhisperPost
+import com.whispercove.app.ui.models.Letter
 
 @Composable
 fun ProfileScreen(navController: NavController) {
     val userProfile = remember { MockData.userProfile }
-    val userPosts = remember { MockData.userPosts }
+    val userLetters = remember { MockData.letters.filter { it.authorId == "current_user" } }
     
     Box(
         modifier = Modifier
@@ -90,7 +90,7 @@ fun ProfileScreen(navController: NavController) {
                 ) {
                     // 圆形头像
                     AsyncImage(
-                        model = userProfile.avatarUrl,
+                        model = userProfile.avatar,
                         contentDescription = "Profile Avatar",
                         modifier = Modifier
                             .size(80.dp)
@@ -117,14 +117,6 @@ fun ProfileScreen(navController: NavController) {
                             ),
                             color = MaterialTheme.colorScheme.primary
                         )
-                        
-                        Text(
-                            text = "@${userProfile.username}",
-                            style = MaterialTheme.typography.bodyMedium.copy(
-                                fontSize = 14.sp
-                            ),
-                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
-                        )
                     }
                 }
                 
@@ -141,14 +133,14 @@ fun ProfileScreen(navController: NavController) {
                 
                 Spacer(modifier = Modifier.height(16.dp))
                 
-                // 统计数据（作品/关注/粉丝）
+                // 统计数据（已发送/已接收/已回复）
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    StatItem("作品", "${userProfile.postsCount}")
-                    StatItem("关注", "${userProfile.followingCount}")
-                    StatItem("粉丝", "${userProfile.followersCount}")
+                    StatItem("已发送", "${userProfile.totalLettersSent}")
+                    StatItem("已接收", "${userProfile.totalLettersReceived}")
+                    StatItem("已回复", "${userProfile.totalReplies}")
                 }
                 
                 Spacer(modifier = Modifier.height(24.dp))
@@ -182,9 +174,9 @@ fun ProfileScreen(navController: NavController) {
                 
                 Spacer(modifier = Modifier.height(24.dp))
                 
-                // 底部：内容展示区（3列网格，作品卡片+右上角火漆印）
+                // 底部：内容展示区（3列网格，信件卡片+右上角火漆印）
                 when (selectedTab) {
-                    0 -> UserPostsGrid(userPosts)
+                    0 -> UserLettersGrid(userLetters)
                     1 -> Text("收藏内容", style = MaterialTheme.typography.bodyLarge)
                     2 -> Text("喜欢的内容", style = MaterialTheme.typography.bodyLarge)
                 }
@@ -219,18 +211,18 @@ fun StatItem(label: String, value: String) {
 }
 
 @Composable
-fun UserPostsGrid(posts: List<WhisperPost>) {
+fun UserLettersGrid(letters: List<Letter>) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
-        items(posts) { post ->
+        items(letters) { letter ->
             Card(
                 modifier = Modifier
                     .aspectRatio(1f)
-                    .clickable { /* TODO: Open post */ },
+                    .clickable { /* TODO: Open letter */ },
                 shape = RoundedCornerShape(8.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surface
@@ -238,15 +230,8 @@ fun UserPostsGrid(posts: List<WhisperPost>) {
                 elevation = CardDefaults.cardElevation(defaultElevation = 0.dp) // 无硬阴影，保持扁平感
             ) {
                 Box {
-                    if (post.imageUrl.isNotEmpty()) {
-                        AsyncImage(
-                            model = post.imageUrl,
-                            contentDescription = post.content,
-                            modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop
-                        )
-                    } else {
-                        // Text-only post placeholder
+                    if (!letter.isRead) {
+                        // 未拆信件显示信封图标
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
@@ -257,7 +242,26 @@ fun UserPostsGrid(posts: List<WhisperPost>) {
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
-                                text = post.content.take(20) + if (post.content.length > 20) "..." else "",
+                                text = "📧",
+                                style = MaterialTheme.typography.bodyLarge.copy(
+                                    fontSize = 32.sp
+                                ),
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                        }
+                    } else {
+                                // 已拆信件显示内容预览
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(
+                                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
+                                )
+                                .padding(8.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = letter.content.take(20) + if (letter.content.length > 20) "..." else "",
                                 style = MaterialTheme.typography.bodySmall.copy(
                                     fontFamily = FontFamily.Cursive, // 替代Patrick Hand字体
                                     fontSize = 12.sp
@@ -269,7 +273,7 @@ fun UserPostsGrid(posts: List<WhisperPost>) {
                     }
                     
                     // 右上角火漆印
-                    if (post.isOpened) {
+                    if (letter.isRead) {
                         Box(
                             modifier = Modifier
                                 .align(Alignment.TopEnd)

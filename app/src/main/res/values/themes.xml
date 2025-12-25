@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.WhisperCove" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- 树洞信件漂流站主题 -->
+    <style name="Theme.TreeHoleLetterStation" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/tree_green</item>
+        <item name="android:colorPrimaryDark">@color/tree_green</item>
+        <item name="android:colorAccent">@color/stamp_red</item>
+        <item name="android:windowBackground">@color/bg_paper</item>
+        <item name="android:textColorPrimary">@color/text_black</item>
+        <item name="android:textColorSecondary">@color/text_gray</item>
+    </style>
 </resources>

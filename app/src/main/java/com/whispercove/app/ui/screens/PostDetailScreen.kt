@@ -21,19 +21,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.whispercove.app.ui.components.WhisperCoveComponents
+import com.whispercove.app.ui.components.TreeHoleComponents
 import com.whispercove.app.ui.theme.*
+import com.whispercove.app.ui.models.Letter
 import com.whispercove.app.ui.models.MockData
-import com.whispercove.app.ui.models.WhisperPost
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PostDetailScreen(
     navController: NavController,
-    postId: String
+    letterId: String
 ) {
-    // 查找对应的盲盒数据
-    val post = remember { MockData.posts.find { it.id == postId } ?: MockData.posts.first() }
+    // 查找对应的信件数据
+    val letter = remember { MockData.letters.find { it.id == letterId } ?: MockData.letters.first() }
     var responseContent by remember { mutableStateOf("") }
     val remainingChars = 200 - responseContent.length
     
@@ -68,7 +68,7 @@ fun PostDetailScreen(
                 Spacer(modifier = Modifier.weight(1f))
                 
                 Text(
-                    text = "盲盒详情",
+                    text = "信件详情",
                     color = Color(0xFF222222), // text_black
                     fontSize = 18.sp,
                     fontFamily = FontFamily.Serif, // Special Elite
@@ -79,7 +79,7 @@ fun PostDetailScreen(
                 Spacer(modifier = Modifier.weight(1f))
             }
             
-            // 已拆盲盒卡片（信件 + 树洞风格）
+            // 已拆信件卡片（信件 + 树洞风格）
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -124,7 +124,7 @@ fun PostDetailScreen(
                         
                         // 创建时间
                         Text(
-                            text = post.timestamp,
+                            text = letter.timestamp,
                             color = Color(0xFF666666), // text_gray
                             fontSize = 12.sp,
                             fontFamily = FontFamily.Default // 思源黑体
@@ -133,9 +133,9 @@ fun PostDetailScreen(
                     
                     Spacer(modifier = Modifier.height(16.dp))
                     
-                    // 盲盒内容
+                    // 信件内容
                     Text(
-                        text = post.content,
+                        text = letter.content,
                         color = Color(0xFF222222), // text_black
                         fontSize = 16.sp,
                         fontFamily = FontFamily.Serif, // Special Elite
@@ -147,7 +147,7 @@ fun PostDetailScreen(
                     
                     // 情绪标签
                     Text(
-                        text = "#${post.mood}",
+                        text = "#${letter.mood}",
                         color = Color(0xFFC83E37), // stamp_red
                         fontSize = 14.sp,
                         fontFamily = FontFamily.Serif, // Special Elite
@@ -186,7 +186,7 @@ fun PostDetailScreen(
             )
             
             // 回应输入框（木屋质感）
-            WhisperCoveComponents.WoodHouseInputField(
+            TreeHoleComponents.WoodHouseInputField(
                 value = responseContent,
                 onValueChange = { newValue -> responseContent = newValue },
                 placeholder = "写下你的回应，让温暖传递...",
@@ -212,7 +212,7 @@ fun PostDetailScreen(
                 )
                 
                 // 发送回应按钮
-                WhisperCoveComponents.StampButton(
+                TreeHoleComponents.StampButton(
                     text = "发送回应",
                     onClick = {
                         // TODO: 实现发送回应逻辑

@@ -49,17 +49,24 @@
     <dimen name="text_title_size">22sp</dimen>
     <dimen name="tree_hole_icon_size">16dp</dimen>
     <dimen name="unopened_card_height">120dp</dimen>
-    <string name="app_name">WhisperCove</string>
-    <string name="connect">连接</string>
-    <string name="create">创作</string>
-    <string name="explore">探索</string>
-    <string name="home">首页</string>
+    <string name="app_name">树洞信件漂流站</string>
+    <string name="connect">漂流瓶</string>
+    <string name="create">写信</string>
+    <string name="explore">探索信件</string>
+    <string name="home">信箱</string>
     <string name="messages">消息</string>
     <string name="notifications">通知</string>
-    <string name="profile">个人资料</string>
-    <string name="search">搜索</string>
+    <string name="profile">我的收藏</string>
+    <string name="search">搜索信件</string>
     <string name="settings">设置</string>
-    <string name="tagline">发现内心的声音，分享生活的美好</string>
-    <string name="welcome_message">欢迎来到 WhisperCove</string>
-    <style name="Theme.WhisperCove" parent="android:Theme.Material.Light.NoActionBar"/>
+    <string name="tagline">在树洞中倾诉，让信件随波漂流</string>
+    <string name="welcome_message">欢迎来到树洞信件漂流站</string>
+    <style name="Theme.TreeHoleLetterStation" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/tree_green</item>
+        <item name="android:colorPrimaryDark">@color/tree_green</item>
+        <item name="android:colorAccent">@color/stamp_red</item>
+        <item name="android:windowBackground">@color/bg_paper</item>
+        <item name="android:textColorPrimary">@color/text_black</item>
+        <item name="android:textColorSecondary">@color/text_gray</item>
+    </style>
 </resources>

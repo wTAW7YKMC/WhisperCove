@@ -70,6 +70,6 @@ string search
 string settings
 string tagline
 string welcome_message
-style Theme.WhisperCove
+style Theme.TreeHoleLetterStation
 xml backup_rules
 xml data_extraction_rules

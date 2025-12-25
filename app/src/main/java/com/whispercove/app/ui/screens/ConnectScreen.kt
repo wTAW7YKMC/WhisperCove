@@ -176,7 +176,7 @@ fun ConnectionCard(
         ) {
             // 圆形头像
             AsyncImage(
-                model = connection.avatarUrl,
+                model = connection.connectedUserAvatar,
                 contentDescription = "User Avatar",
                 modifier = Modifier
                     .size(56.dp)
@@ -196,7 +196,7 @@ fun ConnectionCard(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = connection.name,
+                    text = connection.connectedUserName,
                     style = MaterialTheme.typography.bodyLarge.copy(
                         fontFamily = FontFamily.Monospace, // 替代Special Elite字体
                         fontWeight = FontWeight.Normal,
@@ -208,7 +208,7 @@ fun ConnectionCard(
                 Spacer(modifier = Modifier.height(4.dp))
                 
                 Text(
-                    text = connection.bio,
+                    text = connection.connectedUserBio,
                     style = MaterialTheme.typography.bodyMedium.copy(
                         fontFamily = FontFamily.Cursive, // 替代Patrick Hand字体
                         fontSize = 14.sp
@@ -251,7 +251,7 @@ fun DiscoverCard(
         ) {
             // 圆形头像
             AsyncImage(
-                model = connection.avatarUrl,
+                model = connection.connectedUserAvatar,
                 contentDescription = "User Avatar",
                 modifier = Modifier
                     .size(56.dp)
@@ -271,7 +271,7 @@ fun DiscoverCard(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = connection.name,
+                    text = connection.connectedUserName,
                     style = MaterialTheme.typography.bodyLarge.copy(
                         fontFamily = FontFamily.Monospace, // 替代Special Elite字体
                         fontWeight = FontWeight.Normal,
@@ -283,7 +283,7 @@ fun DiscoverCard(
                 Spacer(modifier = Modifier.height(4.dp))
                 
                 Text(
-                    text = connection.bio,
+                    text = connection.connectedUserBio,
                     style = MaterialTheme.typography.bodyMedium.copy(
                         fontFamily = FontFamily.Cursive, // 替代Patrick Hand字体
                         fontSize = 14.sp

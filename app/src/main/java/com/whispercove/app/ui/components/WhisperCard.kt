@@ -21,20 +21,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.whispercove.app.ui.components.PrintComponents
-import com.whispercove.app.ui.models.WhisperPost
+import com.whispercove.app.ui.models.Letter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WhisperCard(
-    post: WhisperPost,
+    post: Letter,
     onPostClick: () -> Unit,
     onProfileClick: () -> Unit
 ) {
-    // 根据帖子类型确定卡片样式
-    val cardColor = if (post.isOpened) {
-        MaterialTheme.colorScheme.surface // 已拆盲盒：米白底色 + 信纸纹理
+    // 根据信件状态确定卡片样式
+    val cardColor = if (!post.isSealed) {
+        MaterialTheme.colorScheme.surface // 已拆信：米白底色 + 信纸纹理
     } else {
-        Color(0xFFE0D5C7) // 未拆盲盒：浅棕底色 + 牛皮纸纹理
+        Color(0xFFE0D5C7) // 未拆信：浅棕底色 + 牛皮纸纹理
     }
     
     Card(
@@ -48,8 +48,8 @@ fun WhisperCard(
         onClick = onPostClick
     ) {
         Box {
-            // 已拆盲盒添加邮票装饰
-            if (post.isOpened) {
+            // 已拆信添加邮票装饰
+            if (!post.isSealed) {
                 Box(
                     modifier = Modifier
                         .align(Alignment.TopEnd)
@@ -59,8 +59,8 @@ fun WhisperCard(
                 }
             }
             
-            // 未拆盲盒添加信封封口图案
-            if (!post.isOpened) {
+            // 未拆信添加信封封口图案
+            if (post.isSealed) {
                 val primaryColor = MaterialTheme.colorScheme.primary
                 
                 Canvas(
@@ -91,7 +91,7 @@ fun WhisperCard(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     AsyncImage(
-                        model = post.userAvatar,
+                        model = post.senderAvatar,
                         contentDescription = "User Avatar",
                         modifier = Modifier
                             .size(40.dp)
@@ -103,7 +103,7 @@ fun WhisperCard(
                     
                     Column {
                         Text(
-                            text = post.userName,
+                            text = post.senderName,
                             style = MaterialTheme.typography.bodyMedium.copy(
                                 fontWeight = FontWeight.Normal // 手写风格不需要加粗
                             ),
@@ -120,8 +120,8 @@ fun WhisperCard(
                 
                 Spacer(modifier = Modifier.height(12.dp))
                 
-                // Post content
-                if (post.isOpened) {
+                // Letter content
+                if (!post.isSealed) {
                     Text(
                         text = post.content,
                         style = MaterialTheme.typography.bodyLarge,
@@ -129,15 +129,15 @@ fun WhisperCard(
                         maxLines = 3 // 最多显示3行预览
                     )
                 } else {
-                    // 未拆盲盒显示提示文字
+                    // 未拆信显示提示文字
                     Text(
-                        text = "来自海湾的神秘信件...",
+                        text = "来自树洞的神秘信件...",
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
                     )
                 }
                 
-                if (post.isOpened && post.imageUrl.isNotEmpty()) {
+                if (!post.isSealed && post.imageUrl.isNotEmpty()) {
                     Spacer(modifier = Modifier.height(12.dp))
                     
                     AsyncImage(
@@ -153,8 +153,8 @@ fun WhisperCard(
                 
                 Spacer(modifier = Modifier.height(12.dp))
                 
-                // 情绪标签（已拆盲盒显示）
-                if (post.isOpened && post.mood.isNotEmpty()) {
+                // 情绪标签（已拆信显示）
+                if (!post.isSealed && post.mood.isNotEmpty()) {
                     PrintComponents.TagButton(
                         text = post.mood,
                         onClick = { /* TODO: Filter by mood */ },

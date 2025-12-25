@@ -7,7 +7,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-// WhisperCove 核心色调：木屋+树洞+邮票，和谐复古
+// 树洞信件漂流站核心色调：木屋+树洞+邮票，和谐复古
 // 核心色调占比：背景主色70%，木屋主棕15%，树洞绿10%，邮票红5%
 private val LightColorScheme = lightColorScheme(
     primary = Color(0xFF8B6E4E), // 木屋主棕，温暖自然，占比15%
@@ -36,7 +36,7 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 @Composable
-fun WhisperCoveTheme(
+fun TreeHoleTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

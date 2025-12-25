@@ -309,31 +309,3 @@ object WhisperCoveIcons {
         )
     }
 }
-
-/**
- * 扩展函数：绘制树洞纹理
- */
-fun DrawScope.drawTreeHoleTexture(size: Size, alpha: Float) {
-    val lineColor = Color(0xFF6B8E5D).copy(alpha = alpha) // tree_green with specified alpha
-    
-    // 绘制树洞轮廓
-    val centerX = size.width * 0.8f
-    val centerY = size.height * 0.2f
-    val radius = minOf(size.width, size.height) * 0.1f
-    
-    // 绘制不规则的树洞轮廓
-    for (angle in 0..360 step 30) {
-        val radian = Math.toRadians(angle.toDouble())
-        val x1 = centerX + radius * cos(radian).toFloat()
-        val y1 = centerY + radius * sin(radian).toFloat()
-        val x2 = centerX + (radius * 0.7f) * cos(radian).toFloat()
-        val y2 = centerY + (radius * 0.7f) * sin(radian).toFloat()
-        
-        drawLine(
-            start = Offset(x1, y1),
-            end = Offset(x2, y2),
-            color = lineColor,
-            strokeWidth = 1.dp.toPx()
-        )
-    }
-}

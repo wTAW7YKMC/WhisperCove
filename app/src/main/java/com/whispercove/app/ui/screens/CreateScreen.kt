@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.whispercove.app.ui.components.WhisperCoveComponents
+import com.whispercove.app.ui.components.TreeHoleComponents
 import kotlinx.coroutines.launch
 
 @Composable
@@ -33,11 +33,11 @@ fun CreateScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF9F6F3)) // bg_paper
+            .background(MaterialTheme.colorScheme.background) // 使用主题背景色
             // 添加极淡的树洞轮廓暗纹
             .drawBehind {
                 // 绘制极淡的树洞轮廓暗纹
-                val lineColor = Color(0xFF6B8E5D).copy(alpha = 0.05f) // tree_green with 5% opacity
+                val lineColor = Color(0xFF6B8E5D).copy(alpha = 0.05f) // 使用固定颜色代替MaterialTheme
                 
                 // 绘制树洞轮廓
                 val centerX = size.width * 0.2f
@@ -74,7 +74,7 @@ fun CreateScreen(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 // 返回按钮
-                WhisperCoveComponents.TagButton(
+                TreeHoleComponents.TagButton(
                     text = "返回",
                     onClick = { navController.popBackStack() },
                     selected = false
@@ -102,7 +102,7 @@ fun CreateScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
             
             // 中部：盲盒输入框（木屋质感）
-            WhisperCoveComponents.WoodHouseInputField(
+            TreeHoleComponents.WoodHouseInputField(
                 value = content,
                 onValueChange = { content = it },
                 placeholder = "写下此刻的心情，让它在树洞中漂流...",
@@ -137,7 +137,7 @@ fun CreateScreen(navController: NavController) {
                     horizontalArrangement = Arrangement.spacedBy(8.dp) // tag_spacing
                 ) {
                     moodTags.take(3).forEach { mood ->
-                        WhisperCoveComponents.TagButton(
+                        TreeHoleComponents.TagButton(
                             text = mood,
                             onClick = { selectedMood = if (selectedMood == mood) "" else mood },
                             selected = selectedMood == mood,
@@ -152,7 +152,7 @@ fun CreateScreen(navController: NavController) {
                     horizontalArrangement = Arrangement.spacedBy(8.dp) // tag_spacing
                 ) {
                     moodTags.drop(3).forEach { mood ->
-                        WhisperCoveComponents.TagButton(
+                        TreeHoleComponents.TagButton(
                             text = mood,
                             onClick = { selectedMood = if (selectedMood == mood) "" else mood },
                             selected = selectedMood == mood,
@@ -206,7 +206,7 @@ fun CreateScreen(navController: NavController) {
                 )
                 
                 // 右侧核心按钮
-                WhisperCoveComponents.StampButton(
+                TreeHoleComponents.StampButton(
                     text = "打包盲盒",
                     onClick = { 
                         // 触发打包盲盒动效

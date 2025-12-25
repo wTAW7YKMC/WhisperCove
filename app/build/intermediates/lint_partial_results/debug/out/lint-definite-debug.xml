@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.0.2" type="incidents">
+
+    <incident
+        id="RedundantLabel"
+        severity="warning"
+        message="Redundant label can be removed">
+        <fix-attribute
+            description="Delete label"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="label"/>
+        <location
+            file="${:app*debug*sourceProvider*0*manifest*0}"
+            line="21"
+            column="13"
+            startOffset="838"
+            endLine="21"
+            endColumn="45"
+            endOffset="870"/>
+    </incident>
+
+    <incident
+        id="ModifierParameter"
+        severity="warning"
+        message="Modifier parameter should be the first optional parameter">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/whispercove/app/ui/components/CollectionBoxComponents.kt"
+            line="37"
+            column="5"
+            startOffset="1184"
+            endLine="37"
+            endColumn="13"
+            endOffset="1192"/>
+    </incident>
+
+    <incident
+        id="ModifierParameter"
+        severity="warning"
+        message="Modifier parameter should be the first optional parameter">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/whispercove/app/ui/components/DriftingBottleComponents.kt"
+            line="53"
+            column="5"
+            startOffset="1418"
+            endLine="53"
+            endColumn="13"
+            endOffset="1426"/>
+    </incident>
+
+    <incident
+        id="ModifierParameter"
+        severity="warning"
+        message="Modifier parameter should be the first optional parameter">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/whispercove/app/ui/components/DriftingBottleComponents.kt"
+            line="171"
+            column="5"
+            startOffset="5108"
+            endLine="171"
+            endColumn="13"
+            endOffset="5116"/>
+    </incident>
+
+    <incident
+        id="ModifierParameter"
+        severity="warning"
+        message="Modifier parameter should be the first optional parameter">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/whispercove/app/ui/components/TreeHoleComponents.kt"
+            line="234"
+            column="5"
+            startOffset="7749"
+            endLine="234"
+            endColumn="13"
+            endOffset="7757"/>
+    </incident>
+
+    <incident
+        id="ModifierParameter"
+        severity="warning"
+        message="Modifier parameter should be the first optional parameter">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/whispercove/app/ui/components/WhisperComponents.kt"
+            line="81"
+            column="5"
+            startOffset="2217"
+            endLine="81"
+            endColumn="13"
+            endOffset="2225"/>
+    </incident>
+
+    <incident
+        id="OldTargetApi"
+        severity="warning"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details.">
+        <fix-replace
+            description="Update targetSdkVersion to 36"
+            oldString="33"
+            replacement="36"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="13"
+            column="9"
+            startOffset="239"
+            endLine="13"
+            endColumn="21"
+            endOffset="251"/>
+    </incident>
+
+</incidents>

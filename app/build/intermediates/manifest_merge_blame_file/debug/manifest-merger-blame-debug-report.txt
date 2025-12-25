@@ -49,8 +49,8 @@
 30        android:supportsRtl="true"
 30-->E:\WhisperCove\app\src\main\AndroidManifest.xml:15:9-35
 31        android:testOnly="true"
-32        android:theme="@style/Theme.WhisperCove" >
-32-->E:\WhisperCove\app\src\main\AndroidManifest.xml:16:9-49
+32        android:theme="@style/Theme.TreeHoleLetterStation" >
+32-->E:\WhisperCove\app\src\main\AndroidManifest.xml:16:9-59
 33        <activity
 33-->E:\WhisperCove\app\src\main\AndroidManifest.xml:18:9-27:20
 34            android:name="com.whispercove.app.MainActivity"
@@ -59,8 +59,8 @@
 35-->E:\WhisperCove\app\src\main\AndroidManifest.xml:20:13-36
 36            android:label="@string/app_name"
 36-->E:\WhisperCove\app\src\main\AndroidManifest.xml:21:13-45
-37            android:theme="@style/Theme.WhisperCove" >
-37-->E:\WhisperCove\app\src\main\AndroidManifest.xml:22:13-53
+37            android:theme="@style/Theme.TreeHoleLetterStation" >
+37-->E:\WhisperCove\app\src\main\AndroidManifest.xml:22:13-63
 38            <intent-filter>
 38-->E:\WhisperCove\app\src\main\AndroidManifest.xml:23:13-26:29
 39                <action android:name="android.intent.action.MAIN" />
