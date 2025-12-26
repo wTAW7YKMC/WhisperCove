@@ -78,6 +78,5 @@ val items = listOf(
     Screen.Home,
     Screen.Explore,
     Screen.Create,
-    Screen.Connect,
-    Screen.Profile
+    Screen.Connect
 )
