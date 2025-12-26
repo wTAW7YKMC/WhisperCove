@@ -29,10 +29,11 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    val letters = remember { MockData.letters }
+    val letters = MockData.letters
     val moodTags = listOf("全部", "考研emo", "干饭快乐", "平静", "兴奋", "思考", "期待")
     var selectedMood by remember { mutableStateOf("全部") }
-    var unboxingCardId by remember { mutableStateOf<String?>(null) } // 正在拆盲盒的卡片ID
+    var unboxingCardId by remember { mutableStateOf<String?>(null) }
+    val scope = rememberCoroutineScope()
     
     Box(
         modifier = Modifier
@@ -153,18 +154,21 @@ fun HomeScreen(navController: NavController) {
                 horizontalArrangement = Arrangement.spacedBy(16.dp), // grid_spacing
                 verticalArrangement = Arrangement.spacedBy(16.dp) // grid_spacing
             ) {
-                items(filteredLetters.take(6)) { letter -> // 限制显示6封信件
+                items(filteredLetters.take(6)) { letter ->
                     TreeHoleComponents.UnopenedLetterCard(
                         mood = letter.mood,
                         createTime = letter.timestamp,
-                        onClick = { 
-                            // 触发拆信件动效
+                        onClick = {
                             unboxingCardId = letter.id
-                            
-                            // 动画结束后导航到详情页
-                            kotlinx.coroutines.GlobalScope.launch {
-                                kotlinx.coroutines.delay(300) // 等待动画完成
-                                navController.navigate("letter/${letter.id}")
+                            scope.launch {
+                                try {
+                                    kotlinx.coroutines.delay(300)
+                                    navController.navigate("letter/${letter.id}")
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                    // 如果导航失败，重置unboxingCardId
+                                    unboxingCardId = null
+                                }
                             }
                         },
                         isUnboxing = unboxingCardId == letter.id
@@ -215,7 +219,22 @@ fun HomeScreen(navController: NavController) {
             ) {
                 TreeHoleComponents.StampButton(
                     text = "抽取信件",
-                    onClick = { /* TODO: 实现抽取信件功能 */ }
+                    onClick = { 
+                        scope.launch {
+                            try {
+                                val sealedLetters = letters.filter { it.isSealed }
+                                if (sealedLetters.isNotEmpty()) {
+                                    val randomLetter = sealedLetters.random()
+                                    unboxingCardId = randomLetter.id
+                                    kotlinx.coroutines.delay(300)
+                                    navController.navigate("letter/${randomLetter.id}")
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                                unboxingCardId = null
+                            }
+                        }
+                    }
                 )
             }
         }
